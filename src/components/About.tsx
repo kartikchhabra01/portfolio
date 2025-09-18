@@ -22,7 +22,7 @@ const About: React.FC = () => {
     <section id="about" className="section about about-modern">
       <div className="about-modern-container">
         <div className="about-modern-text">
-          <h1 className="about-modern-headline">But first, allow myself to introduce... myself.</h1>
+          <h1 className="about-modern-headline">But first, let me introduce myself.</h1>
           <p className="about-modern-intro">
             My name is Kartik Chhabra, and I'm a B.Tech CSE student passionate about software development and cybersecurity.
           </p>
