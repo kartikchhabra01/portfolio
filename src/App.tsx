@@ -7,15 +7,10 @@ import Contact from './components/Contact';
 import Footer from './components/Footer';
 
 const App: React.FC = () => {
-  const [darkMode, setDarkMode] = useState(false);
-
-  useEffect(() => {
-    // Check for saved dark mode preference or default to light mode
+  const [darkMode, setDarkMode] = useState(() => {
     const savedDarkMode = localStorage.getItem('darkMode');
-    if (savedDarkMode) {
-      setDarkMode(JSON.parse(savedDarkMode));
-    }
-  }, []);
+    return savedDarkMode ? JSON.parse(savedDarkMode) : true;
+  });
 
   useEffect(() => {
     // Apply dark mode class to body

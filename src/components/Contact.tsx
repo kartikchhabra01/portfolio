@@ -1,4 +1,5 @@
 import React from 'react';
+import emailjs from '@emailjs/browser';
 
 const Contact: React.FC = () => {
   const [submitted, setSubmitted] = React.useState(false);
@@ -10,7 +11,31 @@ const Contact: React.FC = () => {
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    setSubmitted(true);
+    
+    // EmailJS configuration
+    const serviceId = 'service_vkzsyxs';
+    const templateId = 'template_lu9jc0h';
+    const publicKey = 'EymaffR9i0AdyaCwM';
+    
+    // Initialize EmailJS
+    emailjs.init(publicKey);
+    
+    // Send email using EmailJS
+    emailjs.send(serviceId, templateId, {
+      from_name: formData.name,
+      from_email: formData.email,
+      message: formData.message,
+    })
+    .then((result) => {
+      console.log('Email sent successfully:', result.text);
+      setSubmitted(true);
+      setFormData({ name: '', email: '', message: '' }); // Clear form
+    })
+    .catch((error) => {
+      console.error('Error sending email:', error);
+      console.error('Error details:', error.text);
+      alert(`Sorry, there was an error sending your message. Error: ${error.text || error.message}`);
+    });
   };
 
   return (
