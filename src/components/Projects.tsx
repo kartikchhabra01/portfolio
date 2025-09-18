@@ -1,6 +1,8 @@
-import React from 'react';
+import React, { useState } from 'react';
 
 const Projects: React.FC = () => {
+  const [openDetails, setOpenDetails] = useState<number | null>(null);
+
   const projects = [
     {
       id: 1,
@@ -80,13 +82,27 @@ const Projects: React.FC = () => {
                 </div>
                 
                 <div className="project-links">
-                  <a href={project.liveUrl} target="_blank" rel="noopener noreferrer">Live Demo</a>
-                  <a href={project.githubUrl} target="_blank" rel="noopener noreferrer">GitHub</a>
+                  <button onClick={() => setOpenDetails(project.id)} className="btn-primary">Details</button>
                 </div>
               </div>
             </div>
           ))}
         </div>
+        {openDetails !== null && (
+          <div className="modal-overlay" onClick={() => setOpenDetails(null)}>
+            <div className="modal-content" onClick={e => e.stopPropagation()}>
+              <button className="modal-close" onClick={() => setOpenDetails(null)}>&times;</button>
+              <h4>{projects.find(p => p.id === openDetails)?.title}</h4>
+              <p>{projects.find(p => p.id === openDetails)?.description}</p>
+              <h5>Tech Stack:</h5>
+              <ul>
+                {projects.find(p => p.id === openDetails)?.technologies.map((tech) => (
+                  <li key={tech}>{tech}</li>
+                ))}
+              </ul>
+            </div>
+          </div>
+        )}
       </div>
     </section>
   );

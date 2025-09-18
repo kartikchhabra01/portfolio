@@ -54,7 +54,7 @@ const About: React.FC = () => {
               ))}
             </div>
             
-            <a href="#" className="btn-primary">Download Resume</a>
+            <a href="/resume.pdf" className="btn-primary" download>Download Resume</a>
           </div>
           
           <div className="about-image">
