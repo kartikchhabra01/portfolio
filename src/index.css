@@ -10,6 +10,7 @@
 
 html {
   scroll-behavior: smooth;
+  -webkit-text-size-adjust: 100%;
 }
 
 body {
@@ -18,6 +19,8 @@ body {
   color: #111827;
   background-color: #f9fafb;
   transition: background-color 0.3s ease, color 0.3s ease;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
 /* Dark mode styles */
@@ -104,6 +107,10 @@ body.dark {
   font-size: 1.5rem;
   cursor: pointer;
   color: inherit;
+  padding: 0.5rem;
+  min-height: 44px;
+  min-width: 44px;
+  -webkit-tap-highlight-color: transparent;
 }
 
 .mobile-menu {
@@ -125,7 +132,7 @@ body.dark {
 }
 
 .mobile-menu li {
-  padding: 0.75rem 2rem;
+  padding: 0;
 }
 
 .mobile-menu a {
@@ -133,10 +140,19 @@ body.dark {
   color: inherit;
   font-weight: 500;
   transition: color 0.3s ease;
+  display: block;
+  padding: 1rem 2rem;
+  min-height: 44px;
+  -webkit-tap-highlight-color: transparent;
 }
 
 .mobile-menu a:hover {
   color: #667eea;
+  background: rgba(102, 126, 234, 0.1);
+}
+
+.mobile-menu a:active {
+  background: rgba(102, 126, 234, 0.2);
 }
 
 /* Hero Section */
@@ -249,11 +265,21 @@ body.dark {
   display: inline-block;
   transition: all 0.3s ease;
   cursor: pointer;
+  min-height: 44px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  -webkit-tap-highlight-color: transparent;
 }
 
 .btn-primary:hover {
   transform: translateY(-2px);
   box-shadow: 0 10px 25px rgba(102, 126, 234, 0.4);
+}
+
+.btn-primary:active {
+  transform: translateY(0);
+  box-shadow: 0 5px 15px rgba(102, 126, 234, 0.3);
 }
 
 .btn-secondary {
@@ -267,12 +293,22 @@ body.dark {
   display: inline-block;
   transition: all 0.3s ease;
   cursor: pointer;
+  min-height: 44px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  -webkit-tap-highlight-color: transparent;
 }
 
 .btn-secondary:hover {
   background: white;
   color: #667eea;
   transform: translateY(-2px);
+}
+
+.btn-secondary:active {
+  transform: translateY(0);
+  background: rgba(255, 255, 255, 0.9);
 }
 
 /* Section Styles */
@@ -659,6 +695,19 @@ body.dark {
     font-size: 2.5rem;
   }
   
+  .hero p {
+    font-size: 1.1rem;
+    padding: 0 1rem;
+  }
+  
+  .hero-stats {
+    gap: 2rem;
+  }
+  
+  .stat-number {
+    font-size: 2rem;
+  }
+  
   .about-content,
   .contact-content {
     grid-template-columns: 1fr;
@@ -683,6 +732,230 @@ body.dark {
   .btn-secondary {
     width: 100%;
     max-width: 300px;
+  }
+  
+  .section {
+    padding: 3rem 0;
+  }
+  
+  .section-title {
+    font-size: 2rem;
+    margin-bottom: 2rem;
+  }
+  
+  .container {
+    padding: 0 1rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .hero h1 {
+    font-size: 2rem;
+    padding: 0 1rem;
+  }
+  
+  .hero p {
+    font-size: 1rem;
+    padding: 0 1rem;
+  }
+  
+  .hero-content {
+    padding: 1rem;
+  }
+  
+  .hero-stats {
+    gap: 1.5rem;
+    flex-direction: column;
+  }
+  
+  .stat-number {
+    font-size: 1.8rem;
+  }
+  
+  .stat-label {
+    font-size: 0.9rem;
+  }
+  
+  .section-title {
+    font-size: 1.8rem;
+    margin-bottom: 1.5rem;
+  }
+  
+  .btn-primary,
+  .btn-secondary {
+    padding: 0.6rem 1.5rem;
+    font-size: 0.9rem;
+  }
+  
+  .nav-content {
+    padding: 0.75rem 1rem;
+  }
+  
+  .logo {
+    font-size: 1.25rem;
+  }
+  
+  .project-card {
+    margin: 0 0.5rem;
+  }
+  
+  .project-content {
+    padding: 1rem;
+  }
+  
+  .project-title {
+    font-size: 1.1rem;
+  }
+  
+  .project-description {
+    font-size: 0.9rem;
+  }
+}
+
+/* Terminal Specialities Component */
+.terminal-specialities {
+  background: #19202b;
+  border-radius: 14px;
+  box-shadow: 0 6px 24px rgba(0,0,0,0.18);
+  width: 900px;
+  max-width: 900px;
+  min-width: 900px;
+  margin: 2rem auto;
+  padding: 0;
+  overflow: hidden;
+  height: 400px;
+  min-height: 400px;
+  max-height: 400px;
+}
+
+.terminal-header {
+  background: #232946;
+  height: 56px; /* fixed header height */
+  padding: 0 1.5rem; /* horizontal padding only to keep height fixed */
+  display: flex;
+  align-items: center;
+  border-top-left-radius: 14px;
+  border-top-right-radius: 14px;
+}
+
+.terminal-dot {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  display: inline-block;
+  margin-right: 6px;
+}
+
+.terminal-dot-red {
+  background: #ff5f56;
+}
+
+.terminal-dot-yellow {
+  background: #ffbd2e;
+}
+
+.terminal-dot-green {
+  background: #27c93f;
+}
+
+.terminal-content {
+  background: #19202b;
+  color: #fff;
+  margin: 0;
+  padding: 2rem;
+  font-size: 1.1rem;
+  height: 344px;
+  min-height: 344px;
+  max-height: 344px;
+  width: 900px;
+  min-width: 900px;
+  max-width: 900px;
+  font-family: 'Fira Mono', 'Monaco', 'Consolas', monospace;
+  border-bottom-left-radius: 14px;
+  border-bottom-right-radius: 14px;
+  overflow-x: auto;
+  overflow-y: hidden;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  line-height: 1.5;
+  white-space: nowrap;
+}
+
+.terminal-line {
+  height: 1.5em; /* lock each line height */
+}
+
+/* Mobile responsive styles for terminal */
+@media (max-width: 768px) {
+  .terminal-specialities {
+    width: calc(100vw - 2rem);
+    max-width: calc(100vw - 2rem);
+    min-width: calc(100vw - 2rem);
+    margin: 1rem;
+    height: 350px;
+    min-height: 350px;
+    max-height: 350px;
+  }
+  
+  .terminal-header {
+    height: 50px;
+    padding: 0 1rem;
+  }
+  
+  .terminal-dot {
+    width: 10px;
+    height: 10px;
+    margin-right: 4px;
+  }
+  
+  .terminal-content {
+    width: 100%;
+    max-width: 100%;
+    min-width: 100%;
+    height: 300px;
+    min-height: 300px;
+    max-height: 300px;
+    padding: 1rem;
+    font-size: 0.9rem;
+    overflow-x: auto;
+    overflow-y: hidden;
+  }
+}
+
+@media (max-width: 480px) {
+  .terminal-specialities {
+    width: calc(100vw - 1rem);
+    max-width: calc(100vw - 1rem);
+    min-width: calc(100vw - 1rem);
+    margin: 0.5rem;
+    height: 300px;
+    min-height: 300px;
+    max-height: 300px;
+  }
+  
+  .terminal-header {
+    height: 45px;
+    padding: 0 0.75rem;
+  }
+  
+  .terminal-dot {
+    width: 8px;
+    height: 8px;
+    margin-right: 3px;
+  }
+  
+  .terminal-content {
+    width: 100%;
+    max-width: 100%;
+    min-width: 100%;
+    height: 255px;
+    min-height: 255px;
+    max-height: 255px;
+    padding: 0.75rem;
+    font-size: 0.8rem;
+    overflow-x: auto;
+    overflow-y: hidden;
   }
 }
 

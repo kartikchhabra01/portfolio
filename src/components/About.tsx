@@ -1,12 +1,8 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import './AboutModern.css';
 import TerminalSpecialities from './TerminalSpecialities';
 
 const About: React.FC = () => {
-  useEffect(() => {
-    document.body.classList.add('dark');
-    return () => document.body.classList.remove('dark');
-  }, []);
   const skills = [
     { name: 'C/C++', level: 90 },
     { name: 'Java', level: 85 },

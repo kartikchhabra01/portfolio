@@ -37,46 +37,15 @@ const TerminalSpecialities: React.FC = () => {
   }, [currentLine]);
 
   return (
-    <div style={{
-      background: '#19202b',
-      borderRadius: '14px',
-      boxShadow: '0 6px 24px rgba(0,0,0,0.18)',
-      maxWidth: 900,
-      width: 900,
-      margin: '2rem auto',
-      padding: '0',
-      overflow: 'hidden',
-      height: 400,
-      maxHeight: 400,
-      minHeight: 400,
-    }}>
-      <div style={{ background: '#232946', padding: '0.75rem 1.5rem', display: 'flex', alignItems: 'center', borderTopLeftRadius: 14, borderTopRightRadius: 14 }}>
-        <span style={{ width: 12, height: 12, borderRadius: '50%', background: '#ff5f56', display: 'inline-block', marginRight: 6 }}></span>
-        <span style={{ width: 12, height: 12, borderRadius: '50%', background: '#ffbd2e', display: 'inline-block', marginRight: 6 }}></span>
-        <span style={{ width: 12, height: 12, borderRadius: '50%', background: '#27c93f', display: 'inline-block' }}></span>
+    <div className="terminal-specialities">
+      <div className="terminal-header">
+        <span className="terminal-dot terminal-dot-red"></span>
+        <span className="terminal-dot terminal-dot-yellow"></span>
+        <span className="terminal-dot terminal-dot-green"></span>
       </div>
-      <pre style={{
-        background: '#19202b',
-        color: '#fff',
-        margin: 0,
-        padding: '2rem 2rem 1.5rem 2rem',
-        fontSize: '1.1rem',
-        height: 320,
-        maxHeight: 320,
-        minHeight: 320,
-        fontFamily: 'Fira Mono, monospace',
-        borderBottomLeftRadius: 14,
-        borderBottomRightRadius: 14,
-        overflowX: 'auto',
-        overflowY: 'auto',
-        display: 'flex',
-        flexDirection: 'column',
-        justifyContent: 'flex-start',
-        lineHeight: '1.5',
-        whiteSpace: 'nowrap',
-      }}>
+      <pre className="terminal-content">
         {codeLines.map((line, idx) => (
-          <div key={idx} style={{ minHeight: '1.5em' }}>
+          <div key={idx} className="terminal-line">
             {showLine[idx] ? (
               <Typewriter
                 words={[line]}
@@ -86,7 +55,9 @@ const TerminalSpecialities: React.FC = () => {
                 deleteSpeed={0}
                 delaySpeed={0}
               />
-            ) : null}
+            ) : (
+              <span aria-hidden="true">&nbsp;</span>
+            )}
           </div>
         ))}
       </pre>
