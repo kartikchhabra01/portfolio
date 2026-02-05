@@ -45,7 +45,7 @@ const About: React.FC = () => {
         
         <div className="about-modern-image-col">
           <div className="about-modern-image-card">
-            <img src="/WhatsApp Image 2025-09-18 at 22.17.06_827cb789.jpg" alt="Kartik Chhabra" className="about-modern-image" />
+            <img src="/WhatsApp Image 2026-01-21 at 7.54.12 PM.jpeg" alt="Kartik Chhabra" className="about-modern-image" />
           </div>
         </div>
       </div>
