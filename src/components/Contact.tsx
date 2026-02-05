@@ -30,9 +30,10 @@ const Contact: React.FC = () => {
     });
 
     // Send auto-reply email TO VISITOR
+    // Note: Make sure your EmailJS template has "To Email" set to {{to_email}}
     const sendAutoReply = emailjs.send(serviceId, autoReplyTemplateId, {
       to_name: formData.name,
-      to_email: formData.email, // Visitor's email
+      to_email: formData.email, // Visitor's email - MUST match template variable {{to_email}}
       from_name: 'Kartik Chhabra',
     });
 
