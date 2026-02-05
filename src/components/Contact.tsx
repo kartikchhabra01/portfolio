@@ -14,28 +14,40 @@ const Contact: React.FC = () => {
     
     // EmailJS configuration
     const serviceId = process.env.REACT_APP_EMAILJS_SERVICE_ID || '';
-    const templateId = process.env.REACT_APP_EMAILJS_TEMPLATE_ID || '';
+    const templateId = process.env.REACT_APP_EMAILJS_TEMPLATE_ID || ''; // Template for sending message TO you
+    const autoReplyTemplateId = process.env.REACT_APP_EMAILJS_AUTO_REPLY_TEMPLATE_ID || ''; // Template for auto-reply TO visitor
     const publicKey = process.env.REACT_APP_EMAILJS_PUBLIC_KEY || '';
     
     // Initialize EmailJS
     emailjs.init(publicKey);
     
-    // Send email using EmailJS
-    emailjs.send(serviceId, templateId, {
+    // Send email TO YOU (Kartik) with visitor's message
+    const sendToYou = emailjs.send(serviceId, templateId, {
       from_name: formData.name,
       from_email: formData.email,
       message: formData.message,
-    })
-    .then((result) => {
-      console.log('Email sent successfully:', result.text);
-      setSubmitted(true);
-      setFormData({ name: '', email: '', message: '' }); // Clear form
-    })
-    .catch((error) => {
-      console.error('Error sending email:', error);
-      console.error('Error details:', error.text);
-      alert(`Sorry, there was an error sending your message. Error: ${error.text || error.message}`);
+      to_email: 'chhabrakartiik242005@gmail.com', // Your email
     });
+
+    // Send auto-reply email TO VISITOR
+    const sendAutoReply = emailjs.send(serviceId, autoReplyTemplateId, {
+      to_name: formData.name,
+      to_email: formData.email, // Visitor's email
+      from_name: 'Kartik Chhabra',
+    });
+
+    // Send both emails
+    Promise.all([sendToYou, sendAutoReply])
+      .then((results) => {
+        console.log('Emails sent successfully:', results);
+        setSubmitted(true);
+        setFormData({ name: '', email: '', message: '' }); // Clear form
+      })
+      .catch((error) => {
+        console.error('Error sending email:', error);
+        console.error('Error details:', error.text);
+        alert(`Sorry, there was an error sending your message. Error: ${error.text || error.message}`);
+      });
   };
 
   return (
