@@ -13,9 +13,9 @@ const Contact: React.FC = () => {
     e.preventDefault();
     
     // EmailJS configuration
-    const serviceId = 'service_vkzsyxs';
-    const templateId = 'template_lu9jc0h';
-    const publicKey = 'EymaffR9i0AdyaCwM';
+    const serviceId = process.env.REACT_APP_EMAILJS_SERVICE_ID || '';
+    const templateId = process.env.REACT_APP_EMAILJS_TEMPLATE_ID || '';
+    const publicKey = process.env.REACT_APP_EMAILJS_PUBLIC_KEY || '';
     
     // Initialize EmailJS
     emailjs.init(publicKey);
